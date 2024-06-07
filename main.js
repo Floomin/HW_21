@@ -43,18 +43,18 @@ let PowFunc = function () {
 let RemoveFunc = function () {
     let arrayStr = prompt('Enter an array (comma-separated values):');
     let array = arrayStr.split(',').map(item => item.trim());
-    let ItemIndex = +prompt(`Enter item number (starting from 0):`);
-    if (!isNaN(ItemIndex) && ItemIndex >= 0 && ItemIndex < array.length) {
-        function removeE(array, ItemIndex) {
+    let itemIndex = +prompt(`Enter item number (starting from 1):`);
+    if (!isNaN(itemIndex) && itemIndex >= 0 && itemIndex <= array.length) {
+        function removeE(array, itemIndex) {
             let NewArray = array.slice();
-            NewArray.splice(ItemIndex, 1);
+            NewArray.splice(itemIndex - 1, 1);
             return NewArray;
         }
         let element = document.getElementById(elementID);
         if (element) {
             element.remove();
         }
-        let result = removeE(array, ItemIndex);
+        let result = removeE(array, itemIndex);
         let newElement = document.createElement('div');
         newElement.setAttribute('id', elementID);
         newElement.innerHTML = `Первинний масив: ${array} <br> Відкорегованний масив: ${result}`;
@@ -71,11 +71,11 @@ let RemoveFunc = function () {
 */
 let GenerateKeyFunc = function () {
     const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-    let LenghtKey = +prompt(`Enter Length of key:`);
-    if (!isNaN(LenghtKey) && LenghtKey > 0) {
-        function generateKey(characters, LenghtKey) {
+    let lenghtKey = +prompt(`Enter Length of key:`);
+    if (!isNaN(lenghtKey) && lenghtKey > 0) {
+        function generateKey(characters, lenghtKey) {
             let Key = '';
-            for (let i = 0; i < LenghtKey; i++) {
+            for (let i = 0; i < lenghtKey; i++) {
                 let indexKey = Math.floor(Math.random() * characters.length)
                 Key += characters[indexKey];
             }
@@ -85,7 +85,7 @@ let GenerateKeyFunc = function () {
         if (element) {
             element.remove();
         }
-        let result = generateKey(characters, LenghtKey);
+        let result = generateKey(characters, lenghtKey);
         let newElement = document.createElement('div');
         newElement.setAttribute('id', elementID);
         newElement.innerHTML = `Ваш ключ: ${result}`;
@@ -101,7 +101,7 @@ let GenerateKeyFunc = function () {
 распространенный способ добавить интерактивность на веб-страницу, запустив функцию при нажатии на определенный элемент
 при нажатии на определенный элемент. */
 
-let PowBtn = document.getElementById('PowButton').addEventListener("click", PowFunc);
+let powBtn = document.getElementById('PowButton').addEventListener("click", PowFunc);
 
 /* Строка `let RemoveBtn = document.getElementById('RemoveElement').addEventListener(«click»,
 RemoveFunc);` выбирает HTML-элемент с идентификатором 'RemoveElement' и добавляет слушатель события
@@ -109,11 +109,11 @@ RemoveFunc);` выбирает HTML-элемент с идентификатор
 будет выполнена. Это позволяет реализовать интерактивное поведение на веб-странице, где щелчок по указанному элементу
 вызывает запуск определенной функции. */
 
-let RemoveBtn = document.getElementById('RemoveElement').addEventListener("click", RemoveFunc);
+let removeBtn = document.getElementById('RemoveElement').addEventListener("click", RemoveFunc);
 
 /* Эта строка кода выбирает HTML-элемент с идентификатором 'GenerateKey' и добавляет к нему событие
 слушателя к нему. Когда элемент с идентификатором 'GenerateKey' будет щелкнут, функция
 `GenerateKeyFunc` будет выполнена. Это позволяет реализовать интерактивное поведение на веб-странице, где
 щелчок на указанном элементе вызывает выполнение определенной функции. */
 
-let GenerateKeyBtn = document.getElementById('GenerateKey').addEventListener("click", GenerateKeyFunc);
+let generateKeyBtn = document.getElementById('GenerateKey').addEventListener("click", GenerateKeyFunc);
